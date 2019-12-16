@@ -30,6 +30,7 @@ body {
   background-image: url("../assets/images/photo-couch_2x.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   height: 100%;
   padding: 12%;
 }
