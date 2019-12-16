@@ -1,0 +1,16 @@
+<div class="content" ng-app="HowItWorksApp">
+  <div class="infoWrapper" ng-controller="HowItWorksComponent">
+    <div class="infoCard" *ngFor="let item of endlessData">
+      <div class="cardNumber">
+        <p>0{{ item.stepNumber }}</p>
+      </div>
+      <div class="underline"></div>
+      <div class="cardTitle">
+        <p>{{ item.versionContent[0].title }}</p>
+      </div>
+      <div class="cardDesc">
+        <p>{{ item.versionContent[0].body }}</p>
+      </div>
+    </div>
+  </div>
+</div>

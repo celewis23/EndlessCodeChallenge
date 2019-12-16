@@ -1,0 +1,329 @@
+<style>
+  :host {
+    font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .toolbar img {
+    margin: 0 16px;
+  }
+
+  svg.material-icons {
+    height: 24px;
+    width: auto;
+  }
+
+  svg.material-icons:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  .card svg.material-icons path {
+    fill: #888;
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  .card {
+    border-radius: 4px;
+    border: 1px solid #eee;
+    background-color: #fafafa;
+    height: 40px;
+    width: 200px;
+    margin: 0 8px 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    line-height: 24px;
+  }
+
+  .card-container .card:not(:last-child) {
+    margin-right: 0;
+  }
+
+  .card.card-small {
+    height: 16px;
+    width: 168px;
+  }
+
+  .card-container .card:not(.highlight-card) {
+    cursor: pointer;
+  }
+
+  .card-container .card:not(.highlight-card):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 17px rgba(black, 0.35);
+  }
+
+  .card-container .card:not(.highlight-card):hover .material-icons path {
+    fill: rgb(105, 103, 103);
+  }
+
+  .card.highlight-card {
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+    border: none;
+    width: auto;
+    min-width: 30%;
+    position: relative;
+  }
+
+  .card.card.highlight-card span {
+    margin-left: 60px;
+  }
+
+  svg#rocket {
+    width: 80px;
+    position: absolute;
+    left: -10px;
+    top: -24px;
+  }
+
+  svg#rocket-smoke {
+    height: 100vh;
+    position: absolute;
+    top: 10px;
+    right: 180px;
+    z-index: -10;
+  }
+
+  a,
+  a:visited,
+  a:hover {
+    color: #1976d2;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #125699;
+  }
+
+  .terminal {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 6px;
+    padding-top: 45px;
+    margin-top: 8px;
+    overflow: hidden;
+    background-color: rgb(15, 15, 16);
+  }
+
+  .terminal::before {
+    content: "\2022 \2022 \2022";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: rgb(58, 58, 58);
+    color: #c2c3c4;
+    width: 100%;
+    font-size: 2rem;
+    line-height: 0;
+    padding: 14px 0;
+    text-indent: 4px;
+  }
+
+  .terminal pre {
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    color: white;
+    padding: 0 1rem 1rem;
+    margin: 0;
+  }
+
+  .circle-link {
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    margin: 8px;
+    background-color: white;
+    border: 1px solid #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: 1s ease-out;
+  }
+
+  .circle-link:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  footer {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+  }
+
+  footer a {
+    display: flex;
+    align-items: center;
+  }
+
+  .github-star-badge {
+    color: #24292e;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    padding: 3px 10px;
+    border: 1px solid rgba(27, 31, 35, 0.2);
+    border-radius: 3px;
+    background-image: linear-gradient(-180deg, #fafbfc, #eff3f6 90%);
+    margin-left: 4px;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+      sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  }
+
+  .github-star-badge:hover {
+    background-image: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%);
+    border-color: rgba(27, 31, 35, 0.35);
+    background-position: -0.5em;
+  }
+
+  .github-star-badge .material-icons {
+    height: 16px;
+    width: 16px;
+    margin-right: 4px;
+  }
+
+  svg#clouds {
+    position: fixed;
+    bottom: -160px;
+    left: -230px;
+    z-index: -10;
+    width: 1920px;
+  }
+
+  /* Responsive Styles */
+  @media screen and (max-width: 767px) {
+    .card-container > *:not(.circle-link),
+    .terminal {
+      width: 100%;
+    }
+
+    .card:not(.highlight-card) {
+      height: 16px;
+      margin: 8px 0;
+    }
+
+    .card.highlight-card span {
+      margin-left: 72px;
+    }
+
+    svg#rocket-smoke {
+      right: 120px;
+      transform: rotate(-5deg);
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+      display: none;
+      visibility: hidden;
+    }
+  }
+</style>
+
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <div id="logoBar">
+    <div id="logoImg">
+      <a href="#">
+        <svg
+          version="1.1"
+          id="Layer_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="20px"
+          y="20px"
+          viewBox="0 0 358.3 52.1"
+          style="enable-background:new 0 0 358.3 52.1;"
+          xml:space="preserve"
+        >
+          <g class="st0">
+            <path
+              d="M0,40.9h1.7c0.7,0,1.9-1.2,1.9-1.9V13.7c0-0.7-1.2-1.9-1.9-1.9H0V1h44.5v17.4H33.2l-1.7-5.7h-7.9v7.2h10.9v11.6H23.6v8.6
+                     h8.1l1.5-7h11.9v18.3h-45V40.9H0z"
+            />
+            <path
+              d="M51.4,40.9h1.7c0.7,0,1.9-1.2,1.9-1.9V13.7c0-0.7-1.2-1.9-1.9-1.9h-1.7V1h22.5l12.4,22.5h0.2V11.8h-3.7V1H104v10.8h-1.4
+                     c-0.7,0-1.9,1.2-1.9,1.9v37.7H83.3L69.5,26.3h-0.2v14.6h4v10.4H51.6V40.9H51.4z"
+            />
+            <path
+              d="M110.1,40.9h1.7c0.7,0,1.9-1.2,1.9-1.9V13.7c0-0.7-1.2-1.9-1.9-1.9h-1.7V1h25.1c20.2,0,28.3,8.1,28.3,24.8
+                     c0,16.7-8.4,25.6-28.9,25.6h-24.5V40.9z M134.6,40.4c5.6,0,8.5-4.4,8.5-13.8s-2.7-14-8.5-14h-0.9v27.9h0.9V40.4z"
+            />
+            <path
+              d="M168.8,40.9h1.7c0.7,0,1.9-1.2,1.9-1.9V13.7c0-0.7-1.2-1.9-1.9-1.9h-1.7V1h28.7v10.8h-5.2v28.3h7.3l1.5-8.3H213v19.6h-44.3
+                     L168.8,40.9L168.8,40.9z"
+            />
+            <path
+              d="M219.2,40.9h1.7c0.7,0,1.9-1.2,1.9-1.9V13.7c0-0.7-1.2-1.9-1.9-1.9h-1.7V1h44.4v17.4h-11.3l-1.7-5.7h-7.9v7.2h10.9v11.6
+                     h-10.9v8.6h8.1l1.5-7h11.9v18.3h-45V40.9z"
+            />
+            <path
+              d="M282.6,51.3h-12V35h12.7l1.7,5.6c0.8,0.1,1.7,0.2,2.7,0.2c2.6,0,4.8-0.8,4.8-3.2c0-2.2-1.8-3-6.3-4.1
+                     c-7.5-1.9-15.6-4.3-15.6-16.6C270.6,4.4,279.2,0,290,0c5.1,0,7.6,0.4,10.1,0.9h9.9V16h-12.5l-1.7-5.3c-0.6-0.1-1.4-0.1-2.2-0.1
+                     c-3.2,0-5,1-5,3.4s2.2,2.9,4.5,3.5c14,3.9,18.4,7.2,18.4,17.2c0,11.3-5.9,17.4-20.1,17.4C287.9,52.2,285.4,51.9,282.6,51.3z"
+            />
+            <path
+              d="M329.5,51.3h-12V35h12.7l1.7,5.6c0.8,0.1,1.7,0.2,2.7,0.2c2.6,0,4.8-0.8,4.8-3.2c0-2.2-1.8-3-6.3-4.1
+                     c-7.5-1.9-15.6-4.3-15.6-16.6c0-12.5,8.6-16.9,19.4-16.9c5.1,0,7.6,0.4,10.1,0.9h9.9V16h-12.6l-1.7-5.3c-0.6-0.1-1.4-0.1-2.2-0.1
+                     c-3.2,0-5,1-5,3.4s2.2,2.9,4.5,3.5c14,3.9,18.4,7.2,18.4,17.2c0,11.3-5.9,17.4-20.1,17.4C334.8,52.2,332.4,51.9,329.5,51.3z"
+            />
+          </g>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="content" role="main">
+  <div id="heroWrapper">
+    <div id="heroContent">
+      <div id="heroHyperText">New Games & Accessories</div>
+      <div id="heroText">
+        Monthly packages.<br />Excitement delivered daily.
+      </div>
+      <div id="heroSubText">
+        What’s the best way to shop for the latest video games and peripherals?
+        How about never shopping at all? You’ll get new stuff on your doorstep —
+        every month.
+      </div>
+      <div id="heroCTA">
+        <a href="#">GET STARTED</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- page content -->
+<div class="pageContent">
+  <p>{{ title }}</p>
+</div>
+<app-how-it-works></app-how-it-works>
+<div class="card-container"></div>
+
+<router-outlet></router-outlet>

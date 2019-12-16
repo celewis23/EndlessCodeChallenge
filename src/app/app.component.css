@@ -1,0 +1,116 @@
+@font-face {
+  font-family: "Lato-Light";
+  src: url("../assets/fonts/Lato-Light.ttf");
+}
+body {
+  margin: 0;
+}
+.toolbar {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #222222;
+  color: white;
+  font-weight: 600;
+}
+#logoBar {
+  padding-left: 12%;
+}
+#logoImg > a > svg {
+  height: 20px;
+  padding: 10px 0px;
+  fill: #50e3c2;
+  filter: rbg(80, 277, 194);
+}
+.content {
+  display: flex;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: left;
+  background-image: url("../assets/images/photo-couch_2x.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  padding: 12%;
+}
+#heroWrapper {
+  margin-top: 5%;
+}
+#heroHyperText,
+#heroText,
+#heroSubText {
+  color: #fff;
+  font-family: Lato-Light;
+}
+
+#heroHyperText,
+#heroSubText {
+  font-size: 1.2em;
+  width: 300px;
+  line-height: 1.5em;
+  font-weight: bold;
+}
+#heroCTA {
+  font-family: Lato-Light;
+  font-size: 1em;
+  background-color: #50e3c2;
+  width: 120px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  border-radius: 25px;
+  margin: 15px 0px;
+}
+#heroCTA:hover {
+  cursor: pointer;
+}
+#heroCTA > a {
+  text-decoration: none;
+  color: #000;
+}
+#heroText {
+  font-size: 3em;
+  padding: 10px 0px;
+}
+
+.pageContent {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.pageContent > p {
+  font-size: 2em;
+  text-align: center;
+}
+
+@media only screen and (max-width: 320px) {
+  #heroHyperText,
+  #heroSubText {
+    font-size: 1.2em;
+    width: 100%;
+    line-height: 1.5em;
+    font-weight: bold;
+    text-align: center;
+  }
+  #heroText {
+    text-align: center;
+  }
+  #heroCTA {
+    margin: auto;
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  #heroHyperText,
+  #heroSubText,
+  #heroText {
+    text-align: center;
+  }
+  #heroCTA {
+    margin: auto;
+    margin-top: 20px;
+  }
+}
