@@ -64,6 +64,7 @@ body {
 }
 #heroCTA:hover {
   cursor: pointer;
+  background-color: aquamarine;
 }
 #heroCTA > a {
   text-decoration: none;
